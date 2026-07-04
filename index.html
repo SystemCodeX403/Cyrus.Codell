@@ -338,34 +338,24 @@
       border-color: #444;
     }
 
-.thumb-frame {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
+    .thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      background: #222;
+      position: relative;
+      overflow: hidden;
+    }
 
-.video-card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 0.6rem;
-  border: 1px solid #222;
-  cursor: pointer;
-  transition: 0.2s;
-  overflow: hidden;
-}
-
-.video-card:hover {
-  transform: translateY(-2px);
-  border-color: #444;
-}
-
-.playlist-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem;
-}
+    .thumb::before {
+      content: "▶";
+      position: absolute;
+      font-size: 1.6rem;
+      color: rgba(255, 255, 255, 0.85);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     .video-info {
       margin-top: 0.5rem;
@@ -498,13 +488,6 @@
   border-radius: 8px;
   background: #000;
 }
-.hero-video iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-  border-radius: 12px;
-  background: #000;
-}
     }
   </style>
 </head>
@@ -526,71 +509,63 @@
       </a>
     </div>
   </header>
+
   <main>
-<!-- HERO -->
-<section id="hero" class="hero">
-  <div class="hero-text">
-    <h1>Hey, I’m <span id="hero-name">Your Name</span></h1>
-
-    <p>
-      Hello Welcome to about me Website and my Channel :D
-    </p>
-
-    <div class="hero-tags">
-      <span class="tag">Modder</span>
-      <span class="tag">Gaming</span>
-      <span class="tag">Coding</span>
-      <span class="tag">Lets playss</span>
-      <span class="tag">100% adchivements</span>
-    </div>
-
-    <div class="hero-actions">
-      <button class="btn-primary" id="btn-watch-latest">
-        ▶ Watch latest videos
-      </button>
-
-      <button class="btn-secondary" id="btn-open-channel">
-        Open YouTube Channel
-      </button>
-    </div>
-  </div>
-
-  <div class="hero-video">
-
-    <iframe
-      id="featured-video"
-      src="https://www.youtube.com/embed/0Z11QTkJEYU"
-      title="Featured Video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-
-    <div class="video-meta">
-      <div>
-        <div class="video-title" id="featured-title">
-          Latest Upload
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="hero-text">
+        <h1>Hey, I’m <span id="hero-name">Your Name</span></h1>
+        <p>
+          I create videos about my life, my thoughts, and the things I’m obsessed with.
+          This is the home base for my YouTube channel—everything about me in one place.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Vlogs</span>
+          <span class="tag">Real talk</span>
+          <span class="tag">Challenges</span>
+          <span class="tag">Behind the scenes</span>
         </div>
-
-        <div>
-          Watch the newest video from SystemCodeX403.
+        <div class="hero-actions">
+          <button class="btn-primary" id="btn-watch-latest">
+            ▶ Watch latest video
+          </button>
+          <button class="btn-secondary" id="btn-open-channel">
+            Open YouTube channel
+          </button>
         </div>
       </div>
-
-      <div>
-        <span id="featured-length"></span>
-        <span id="featured-date"></span>
+      <div class="hero-video">
+        <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+        <iframe
+          id="featured-video"
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          title="Featured video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+        <div class="video-meta">
+          <div>
+            <div class="video-title" id="featured-title">
+              My latest upload
+            </div>
+            <div>Watch latest Videos</div>
+          </div>
+          <div>
+            <span id="featured-length">10:24</span> •
+            <span id="featured-date">2026</span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
     <!-- ABOUT -->
     <section id="about">
       <div class="about-card">
         <div>
           <h2>About me</h2>
-             <p id="about-text">
-            Hi my name is Sysen Arlo Codell im 21 and love content creation for my viewers. I do lets plays for a gaming channel and my favorite things to do is be creative with my work
+          <p id="about-text">
+            I’m a creator who loves sharing honest moments, random ideas, and the process of figuring life out.
+            My channel is where I experiment, connect, and document the journey.
           </p>
           <ul class="about-list">
             <li><strong>Started YouTube:</strong> <span id="about-start">2026</span></li>
@@ -601,15 +576,26 @@
           <div>
             <img src="Images/Icons/Icon.png" alt="Profile Icon" class="avatar" />
             <p>
-              Feel free to Contact me at the bottom of the page!
+              This site is built just for my channel—so if you’re here, you’re already part of the story.
             </p>
           </div>
-
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-label">Subscribers</div>
+              <div class="stat-value" id="stat-subs">1,234</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Total views</div>
+              <div class="stat-value" id="stat-views">56,789</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Videos</div>
+              <div class="stat-value" id="stat-videos">42</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
-    <div class="nav-cta" style="padding:0; border:none;">
-</div>
-
 
     <!-- PLAYLIST -->
     <section id="playlist">
@@ -636,6 +622,7 @@
           <div class="contact-links">
             Email: <a id="contact-email-link" href="mailto:you@example.com">you@example.com</a><br />
             YouTube: <a id="contact-channel-link" target="_blank">Visit channel</a><br />
+            Instagram: <a id="contact-instagram-link" target="_blank">@yourhandle</a>
           </div>
         </div>
         <div>
@@ -674,25 +661,30 @@
       instagramUrl: "https://www.instagram.com/yourhandle",
       started: "Nov 30, 2023",
       vibe: "Low-key, real, and a little chaotic",
+      stats: {
+        subs: "30",
+        views: "56,789",
+        videos: "14",
+      },
   featuredVideo: {
   id: "0Z11QTkJEYU",
         title: "latest upload",
       },
       playlist: [
         {
-          id: "0Z11QTkJEYU",
+          id: "bMtNAjTKTQ078sOP",
           title: "1",
         },
         {
-          id: "Lloh_UrahH0",
+          id: "u33RhwxDYtY",
           title: "2",
         },
         {
-          id: "9tbzXHx7ToE",
+          id: "6UybLYVBsZI",
           title: "3",
         },
         {
-          id: "SVFJLqm208I",
+          id: "f7Ckb_ug9kU",
           title: "4",
         },
       ],
@@ -705,6 +697,10 @@
       document.getElementById("hero-name").textContent = config.yourName;
       document.getElementById("about-start").textContent = config.started;
       document.getElementById("about-vibe").textContent = config.vibe;
+
+      document.getElementById("stat-subs").textContent = config.stats.subs;
+      document.getElementById("stat-views").textContent = config.stats.views;
+      document.getElementById("stat-videos").textContent = config.stats.videos;
 
       // Featured video
       const featuredIframe = document.getElementById("featured-video");
@@ -748,54 +744,42 @@ btnWatchLatest.addEventListener("click", () => {
         const card = document.createElement("div");
         card.className = "video-card";
 card.innerHTML = `
-  <img
+  <iframe
     class="thumb-frame"
-    src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg"
-    alt="${video.title}"
-  >
+    src="https://www.youtube.com/embed/${video.id}"
+    title="${video.title}"
+    allowfullscreen>
+  </iframe>
 
   <div class="video-info">
     <h3>${video.title}</h3>
+    <p>${video.description}</p>
+    <p style="margin-top:0.2rem;font-size:0.75rem;color:#999;">
+      ${video.length}
+    </p>
   </div>
 `;
+        card.addEventListener("click", () => {
+          featuredIframe.src = "https://www.youtube.com/embed/" + video.id;
+          document.getElementById("featured-title").textContent = video.title;
+          document.getElementById("featured-length").textContent = video.length;
+          document.getElementById("featured-date").textContent = config.featuredVideo.date;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        playlistGrid.appendChild(card);
+      });
 
-  card.addEventListener("click", () => {
+      // Contact form (demo only)
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        status.textContent =
+          "This demo form doesn’t send yet—but you can connect it to email or a backend later.";
+      });
+    }
 
-    featuredIframe.src =
-      "https://www.youtube.com/embed/" + video.id;
-
-    document.getElementById("featured-title").textContent =
-      video.title;
-
-    document.getElementById("featured-length").textContent =
-      video.length || "";
-
-    document.getElementById("featured-date").textContent = "";
-
-    document.getElementById("hero").scrollIntoView({
-      behavior: "smooth"
-    });
-
-  });
-
-  playlistGrid.appendChild(card);
-
-});
-
-// Contact form (demo only)
-const form = document.getElementById("contact-form");
-const status = document.getElementById("form-status");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  status.textContent =
-    "This demo form doesn’t send yet—but you can connect it to email or a backend later.";
-});
-
-}
-
-document.addEventListener("DOMContentLoaded", initSite);
+    document.addEventListener("DOMContentLoaded", initSite);
   </script>
 </body>
 </html>
