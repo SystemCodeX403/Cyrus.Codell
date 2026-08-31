@@ -1,785 +1,835 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sysen Arlo Codell – About Me</title>
-  <style>
-    :root {
-      --bg: #050505;
-      --card: #111111;
-      --accent: #ff0000;
-      --text: #ffffff;
-      --muted: #bbbbbb;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: var(--font);
-      background: radial-gradient(circle at top, #202020 0, #000000 55%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #222;
-    }
-
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .logo-icon {
-      width: 26px;
-      height: 18px;
-      border-radius: 4px;
-      background: var(--accent);
-      position: relative;
-    }
-
-    .logo-icon::before {
-      content: "";
-      position: absolute;
-      left: 9px;
-      top: 4px;
-      border-left: 10px solid #fff;
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.35rem 0.6rem;
-      border-radius: 999px;
-      transition: 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-      background: #222;
-    }
-
-    .nav-cta {
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-size: 0.85rem;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .nav-cta:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.5rem 1.25rem 3rem;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    /* Hero */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 2rem;
-      align-items: center;
-      padding-top: 1.5rem;
-    }
-
-    .hero-text h1 {
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-text p {
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-      line-height: 1.5;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      font-size: 0.8rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #333;
-      color: var(--muted);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border-radius: 999px;
-      padding: 0.55rem 1.2rem;
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: 0.2s;
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.1);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 0.55rem 1.2rem;
-      border: 1px solid #333;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: 0.2s;
-    }
-
-    .btn-secondary:hover {
-      border-color: #555;
-      color: var(--text);
-    }
-
-    .hero-video {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 0.75rem;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-      border: 1px solid #222;
-    }
-
-    .hero-video iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
-      border: none;
-    }
-
-    .video-meta {
-      margin-top: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .video-title {
-      font-size: 0.9rem;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    /* About */
-
-    .about-card {
-      background: linear-gradient(135deg, #111111, #050505);
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid #222;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 1.5rem;
-    }
-
-    .about-card h2 {
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .about-card p {
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
-    }
-
-    .about-list {
-      list-style: none;
-      margin-top: 0.5rem;
-    }
-
-    .about-list li {
-      margin-bottom: 0.35rem;
-      font-size: 0.9rem;
-    }
-
-    .about-list span {
-      color: var(--muted);
-    }
-
-.avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid #333;
-  margin-bottom: 0.75rem;
-  object-fit: cover;
-  display: block;
-}
-    .about-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
-
-    .stat {
-      flex: 1 1 120px;
-      background: #080808;
-      border-radius: 12px;
-      padding: 0.75rem;
-      border: 1px solid #222;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-value {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    /* Playlist */
-
-    .playlist-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .playlist-header h2 {
-      font-size: 1.3rem;
-    }
-
-    .playlist-header span {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .playlist-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .video-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 0.6rem;
-      border: 1px solid #222;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .video-card:hover {
-      transform: translateY(-2px);
-      border-color: #444;
-    }
-
-    .thumb {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 8px;
-      background: #222;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thumb::before {
-      content: "▶";
-      position: absolute;
-      font-size: 1.6rem;
-      color: rgba(255, 255, 255, 0.85);
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .video-info {
-      margin-top: 0.5rem;
-    }
-
-    .video-info h3 {
-      font-size: 0.9rem;
-      margin-bottom: 0.15rem;
-    }
-
-    .video-info p {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* Contact */
-
-    .contact-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid #222;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 1.5rem;
-    }
-
-    .contact-card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 0.75rem;
-    }
-
-    form {
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      background: #050505;
-      border-radius: 8px;
-      border: 1px solid #333;
-      padding: 0.5rem 0.6rem;
-      color: var(--text);
-      font-size: 0.9rem;
-    }
-
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .contact-links {
-      margin-top: 0.75rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .contact-links a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .contact-links a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      border-top: 1px solid #111;
-      padding: 1rem 1.25rem 1.5rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 800px) {
-      .hero,
-      .about-card,
-      .contact-card {
-        grid-template-columns: 1fr;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sysen Arlo Codell – About Me</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --card: #111111;
+        --accent: #ff0000;
+        --text: #ffffff;
+        --muted: #bbbbbb;
+        --font:
+          system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font);
+        background: radial-gradient(circle at top, #202020 0, #000000 55%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #222;
       }
 
       .nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .logo-icon {
+        width: 26px;
+        height: 18px;
+        border-radius: 4px;
+        background: var(--accent);
+        position: relative;
+      }
+
+      .logo-icon::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 4px;
+        border-left: 10px solid #fff;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        transition: 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+        background: #222;
+      }
+
+      .nav-cta {
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+
+      .nav-cta:hover {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      section {
+        margin-bottom: 3rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: center;
+        padding-top: 1.5rem;
+      }
+
+      .hero-text h1 {
+        font-size: clamp(2.2rem, 4vw, 3rem);
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-text p {
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+        line-height: 1.5;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tag {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid #333;
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
         flex-wrap: wrap;
         gap: 0.75rem;
       }
 
-      .nav-links {
-        order: 3;
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.55rem 1.2rem;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: 0.2s;
+      }
+
+      .btn-primary:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--muted);
+        border-radius: 999px;
+        padding: 0.55rem 1.2rem;
+        border: 1px solid #333;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: 0.2s;
+      }
+
+      .btn-secondary:hover {
+        border-color: #555;
+        color: var(--text);
+      }
+
+      .hero-video {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 0.75rem;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+        border: 1px solid #222;
+      }
+
+      .hero-video iframe {
         width: 100%;
-        justify-content: center;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px;
+        border: none;
+      }
+
+      .video-meta {
+        margin-top: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .video-title {
+        font-size: 0.9rem;
+        color: var(--text);
+        margin-bottom: 0.2rem;
+      }
+
+      .about-card {
+        background: linear-gradient(135deg, #111111, #050505);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid #222;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 1.5rem;
+      }
+
+      .about-card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .about-card p {
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+      }
+
+      .about-list {
+        list-style: none;
+        margin-top: 0.5rem;
+      }
+
+      .about-list li {
+        margin-bottom: 0.35rem;
+        font-size: 0.9rem;
+      }
+
+      .about-list span {
+        color: var(--muted);
+      }
+
+      .avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 3px solid #333;
+        margin-bottom: 0.75rem;
+        object-fit: cover;
+        display: block;
+      }
+
+      .about-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .stats {
+        display: flex;
         flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.75rem;
       }
 
-      .nav-cta {
-        order: 2;
+      .stat {
+        flex: 1 1 120px;
+        background: #080808;
+        border-radius: 12px;
+        padding: 0.75rem;
+        border: 1px solid #222;
       }
-      .thumb-frame {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border: none;
-  border-radius: 8px;
-  background: #000;
-}
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="nav">
-      <div class="logo">
-        <div class="logo-icon"></div>
-        <span>Sysen Arlo Codell</span>
-      </div>
-      <div class="nav-links">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#playlist">Videos</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a class="nav-cta" id="nav-subscribe" target="_blank">
-        Subscribe
-      </a>
-    </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="hero-text">
-        <h1>Hey, I’m <span id="hero-name">Your Name</span></h1>
-        <p>
-          I create videos about my life, my thoughts, and the things I’m obsessed with.
-          This is the home base for my YouTube channel—everything about me in one place.
-        </p>
-        <div class="hero-tags">
-          <span class="tag">Vlogs</span>
-          <span class="tag">Real talk</span>
-          <span class="tag">Challenges</span>
-          <span class="tag">Behind the scenes</span>
-        </div>
-        <div class="hero-actions">
-          <button class="btn-primary" id="btn-watch-latest">
-            ▶ Watch latest video
-          </button>
-          <button class="btn-secondary" id="btn-open-channel">
-            Open YouTube channel
-          </button>
-        </div>
-      </div>
-      <div class="hero-video">
-        <!-- Replace VIDEO_ID with your actual YouTube video ID -->
-        <iframe
-          id="featured-video"
-          src="https://www.youtube.com/embed/VIDEO_ID"
-          title="Featured video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-        <div class="video-meta">
-          <div>
-            <div class="video-title" id="featured-title">
-              My latest upload
-            </div>
-            <div>Watch latest Videos</div>
-          </div>
-          <div>
-            <span id="featured-length">10:24</span> •
-            <span id="featured-date">2026</span>
-          </div>
-        </div>
-      </div>
-    </section>
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-bottom: 0.25rem;
+      }
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="about-card">
-        <div>
-          <h2>About me</h2>
-          <p id="about-text">
-            I’m a creator who loves sharing honest moments, random ideas, and the process of figuring life out.
-            My channel is where I experiment, connect, and document the journey.
-          </p>
-          <ul class="about-list">
-            <li><strong>Started YouTube:</strong> <span id="about-start">2026</span></li>
-            <li><strong>Channel vibe:</strong> <span id="about-vibe">Low-key, real, and a little chaotic</span></li>
-          </ul>
-        </div>
-        <div class="about-right">
-          <div>
-            <img src="Images/Icons/Icon.png" alt="Profile Icon" class="avatar" />
-            <p>
-              This site is built just for my channel—so if you’re here, you’re already part of the story.
-            </p>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-label">Subscribers</div>
-              <div class="stat-value" id="stat-subs">1,234</div>
-            </div>
-            <div class="stat">
-              <div class="stat-label">Total views</div>
-              <div class="stat-value" id="stat-views">56,789</div>
-            </div>
-            <div class="stat">
-              <div class="stat-label">Videos</div>
-              <div class="stat-value" id="stat-videos">42</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      .stat-value {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
 
-    <!-- PLAYLIST -->
-    <section id="playlist">
-      <div class="playlist-header">
-        <div>
-          <h2>Featured videos</h2>
-          <span>Tap a card to load it in the player above.</span>
-        </div>
-      </div>
-      <div class="playlist-grid" id="playlist-grid">
-        <!-- Cards are injected by JavaScript -->
-      </div>
-    </section>
+      .playlist-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="contact-card">
-        <div>
-          <h2>Business & collabs</h2>
+      .playlist-header h2 {
+        font-size: 1.3rem;
+      }
+
+      .playlist-header span {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .playlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+      }
+
+      .video-card {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 0.6rem;
+        border: 1px solid #222;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .video-card:hover {
+        transform: translateY(-2px);
+        border-color: #444;
+      }
+
+      .thumb {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+        background: #222;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .thumb::before {
+        content: "▶";
+        position: absolute;
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.85);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .video-info {
+        margin-top: 0.5rem;
+      }
+
+      .video-info h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.15rem;
+      }
+
+      .video-info p {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .contact-card {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid #222;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 1.5rem;
+      }
+
+      .contact-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-card p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+      }
+
+      form {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 0.15rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        background: #050505;
+        border-radius: 8px;
+        border: 1px solid #333;
+        padding: 0.5rem 0.6rem;
+        color: var(--text);
+        font-size: 0.9rem;
+      }
+
+      textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .contact-links {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .contact-links a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .contact-links a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        border-top: 1px solid #111;
+        padding: 1rem 1.25rem 1.5rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 800px) {
+        .hero,
+        .about-card,
+        .contact-card {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          gap: 0.75rem;
+        }
+
+        .nav-links {
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .nav-cta {
+          order: 2;
+        }
+
+        .thumb-frame {
+          width: 100%;
+          aspect-ratio: 16/9;
+          border: none;
+          border-radius: 8px;
+          background: #000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <div class="logo">
+          <div class="logo-icon"></div>
+          <span>Sysen Arlo Codell</span>
+        </div>
+        <div class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#playlist">Videos</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="nav-cta" id="nav-subscribe" target="_blank"> Subscribe </a>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-text">
+          <h1>Hey, I’m <span id="hero-name">Your Name</span></h1>
           <p>
-            Want to work together, sponsor a video, or just say hi?
-            Drop a message here or reach out directly.
+            I create videos about my life, my thoughts, and the things I’m
+            obsessed with. This is the home base for my YouTube
+            channel—everything about me in one place.
           </p>
-          <div class="contact-links">
-            Email: <a id="contact-email-link" href="mailto:you@example.com">you@example.com</a><br />
-            YouTube: <a id="contact-channel-link" target="_blank">Visit channel</a><br />
-            Instagram: <a id="contact-instagram-link" target="_blank">@yourhandle</a>
+          <div class="hero-tags">
+            <span class="tag">Vlogs</span>
+            <span class="tag">Real talk</span>
+            <span class="tag">Challenges</span>
+            <span class="tag">Behind the scenes</span>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary" id="btn-watch-latest">
+              ▶ Watch latest video
+            </button>
+            <button class="btn-secondary" id="btn-open-channel">
+              Open YouTube channel
+            </button>
           </div>
         </div>
-        <div>
-          <form id="contact-form">
+        <div class="hero-video">
+          <iframe
+            id="featured-video"
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title="Featured video"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          ></iframe>
+          <div class="video-meta">
             <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
+              <div class="video-title" id="featured-title">
+                My latest upload
+              </div>
+              <div>Watch latest Videos</div>
             </div>
             <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              <span id="featured-length">10:24</span> •
+              <span id="featured-date">2026</span>
             </div>
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="What’s up?" required></textarea>
-            </div>
-            <button class="btn-primary" type="submit">Send message</button>
-            <p id="form-status" style="font-size:0.8rem; color:var(--muted); margin-top:0.4rem;"></p>
-          </form>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    © <span id="footer-year"></span> <span id="footer-name">Your Name</span> · Built for my YouTube channel.
-  </footer>
+      </section>
 
-  <script>
-    // ====== CONFIG: PUT YOUR REAL INFO HERE ======
-    const config = {
-      channelName: "SystemCodeX403",
-      yourName: "Sysen Arlo Codell",
-      youtubeChannelUrl: "https://www.youtube.com/@SystemCodeX403/",
-      subscribeUrl: "https://www.youtube.com/channel/UCKgXrIfDnrRcfkJ9iuXGNQg?sub_confirmation=1",
-      email: "Sysen.Arlo.Codell@outlook.com",
-      instagramUrl: "https://www.instagram.com/yourhandle",
-      started: "Nov 30, 2023",
-      vibe: "Low-key, real, and a little chaotic",
-      stats: {
-        subs: "30",
-        views: "56,789",
-        videos: "14",
-      },
-  featuredVideo: {
-  id: "0Z11QTkJEYU",
-        title: "latest upload",
-      },
-      playlist: [
-        {
-          id: "bMtNAjTKTQ078sOP",
-          title: "1",
+      <section id="about">
+        <div class="about-card">
+          <div>
+            <h2>About me</h2>
+            <p id="about-text">
+              I’m a creator who loves sharing honest moments, random ideas, and
+              the process of figuring life out. My channel is where I
+              experiment, connect, and document the journey.
+            </p>
+            <ul class="about-list">
+              <li>
+                <strong>Started YouTube:</strong>
+                <span id="about-start">2026</span>
+              </li>
+              <li>
+                <strong>Channel vibe:</strong>
+                <span id="about-vibe">Low-key, real, and a little chaotic</span>
+              </li>
+            </ul>
+          </div>
+          <div class="about-right">
+            <div>
+              <img
+                src="Images/Icons/Icon.png"
+                alt="Profile Icon"
+                class="avatar"
+              />
+              <p>
+                This site is built just for my channel—so if you’re here, you’re
+                already part of the story.
+              </p>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-label">Subscribers</div>
+                <div class="stat-value" id="stat-subs">1,234</div>
+              </div>
+              <div class="stat">
+                <div class="stat-label">Total views</div>
+                <div class="stat-value" id="stat-views">56,789</div>
+              </div>
+              <div class="stat">
+                <div class="stat-label">Videos</div>
+                <div class="stat-value" id="stat-videos">42</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="playlist">
+        <div class="playlist-header">
+          <div>
+            <h2>Featured videos</h2>
+            <span>Tap a card to load it in the player above.</span>
+          </div>
+        </div>
+        <div class="playlist-grid" id="playlist-grid"></div>
+      </section>
+
+      <section id="contact">
+        <div class="contact-card">
+          <div>
+            <h2>Business & collabs</h2>
+            <p>
+              Want to work together, sponsor a video, or just say hi? Drop a
+              message here or reach out directly.
+            </p>
+            <div class="contact-links">
+              Email:
+              <a id="contact-email-link" href="mailto:you@example.com"
+                >you@example.com</a
+              ><br />
+              YouTube:
+              <a id="contact-channel-link" target="_blank">Visit channel</a
+              ><br />
+              Instagram:
+              <a id="contact-instagram-link" target="_blank">@yourhandle</a>
+            </div>
+          </div>
+          <div>
+            <form id="contact-form">
+              <div>
+                <label for="name">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="What’s up?"
+                  required
+                ></textarea>
+              </div>
+              <button class="btn-primary" type="submit">Send message</button>
+              <p
+                id="form-status"
+                style="
+                  font-size: 0.8rem;
+                  color: var(--muted);
+                  margin-top: 0.4rem;
+                "
+              ></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="footer-year"></span> <span id="footer-name">Your Name</span> ·
+      Built for my YouTube channel.
+    </footer>
+
+    <script>
+      const config = {
+        channelName: "SystemCodeX403",
+        yourName: "Sysen Arlo Codell",
+        youtubeChannelUrl: "https://www.youtube.com/@SystemCodeX403/",
+        subscribeUrl:
+          "https://www.youtube.com/channel/UCKgXrIfDnrRcfkJ9iuXGNQg?sub_confirmation=1",
+        email: "Sysen.Arlo.Codell@outlook.com",
+        instagramUrl: "https://www.instagram.com/yourhandle",
+        started: "Nov 30, 2023",
+        vibe: "Low-key, real, and a little chaotic",
+        stats: {
+          subs: "30",
+          views: "56,789",
+          videos: "14",
         },
-        {
-          id: "u33RhwxDYtY",
-          title: "2",
+        featuredVideo: {
+          id: "0Z11QTkJEYU",
+          title: "latest upload",
+          length: "10:24",
+          date: "2026",
         },
-        {
-          id: "6UybLYVBsZI",
-          title: "3",
-        },
-        {
-          id: "f7Ckb_ug9kU",
-          title: "4",
-        },
-      ],
-    };
+        playlist: [
+          { id: "bMtNAjTKTQ078sOP", title: "1" },
+          { id: "u33RhwxDYtY", title: "2" },
+          { id: "6UybLYVBsZI", title: "3" },
+          { id: "f7Ckb_ug9kU", title: "4" },
+        ],
+      };
 
-    // ====== INIT ======
-    function initSite() {
-      // Basic text
-      document.querySelector(".logo span").textContent = config.channelName;
-      document.getElementById("hero-name").textContent = config.yourName;
-      document.getElementById("about-start").textContent = config.started;
-      document.getElementById("about-vibe").textContent = config.vibe;
+      const $ = (s) => document.querySelector(s);
 
-      document.getElementById("stat-subs").textContent = config.stats.subs;
-      document.getElementById("stat-views").textContent = config.stats.views;
-      document.getElementById("stat-videos").textContent = config.stats.videos;
+      document.addEventListener("DOMContentLoaded", () => {
+        const {
+          channelName,
+          yourName,
+          youtubeChannelUrl,
+          subscribeUrl,
+          email,
+          instagramUrl,
+          started,
+          vibe,
+          stats,
+          featuredVideo,
+          playlist,
+        } = config;
 
-      // Featured video
-      const featuredIframe = document.getElementById("featured-video");
-      featuredIframe.src = "https://www.youtube.com/embed/" + config.featuredVideo.id;
-      document.getElementById("featured-title").textContent = config.featuredVideo.title;
-      document.getElementById("featured-length").textContent = config.featuredVideo.length;
-      document.getElementById("featured-date").textContent = config.featuredVideo.date;
+        const dom = {
+          logo: document.querySelector(".logo span"),
+          heroName: $("#hero-name"),
+          aboutStart: $("#about-start"),
+          aboutVibe: $("#about-vibe"),
+          statSubs: $("#stat-subs"),
+          statViews: $("#stat-views"),
+          statVideos: $("#stat-videos"),
+          featuredIframe: $("#featured-video"),
+          featuredTitle: $("#featured-title"),
+          featuredLength: $("#featured-length"),
+          featuredDate: $("#featured-date"),
+          navSubscribe: $("#nav-subscribe"),
+          btnOpenChannel: $("#btn-open-channel"),
+          btnWatchLatest: $("#btn-watch-latest"),
+          contactEmail: $("#contact-email-link"),
+          contactChannel: $("#contact-channel-link"),
+          contactInstagram: $("#contact-instagram-link"),
+          footerYear: $("#footer-year"),
+          footerName: $("#footer-name"),
+          playlistGrid: $("#playlist-grid"),
+          form: $("#contact-form"),
+          formStatus: $("#form-status"),
+        };
 
-      // Links
-      const navSubscribe = document.getElementById("nav-subscribe");
-      navSubscribe.href = config.subscribeUrl;
+        dom.logo.textContent = channelName;
+        dom.heroName.textContent = yourName;
+        dom.aboutStart.textContent = started;
+        dom.aboutVibe.textContent = vibe;
 
-      const btnOpenChannel = document.getElementById("btn-open-channel");
-      btnOpenChannel.addEventListener("click", () => {
-        window.open(config.youtubeChannelUrl, "_blank");
-      });
+        dom.statSubs.textContent = stats.subs;
+        dom.statViews.textContent = stats.views;
+        dom.statVideos.textContent = stats.videos;
 
-const btnWatchLatest = document.getElementById("btn-watch-latest");
-btnWatchLatest.addEventListener("click", () => {
-  window.open("https://www.youtube.com/@SystemCodeX403/videos", "_blank");
-});
+        dom.featuredIframe.src = `https://www.youtube.com/embed/${featuredVideo.id}`;
+        dom.featuredTitle.textContent =
+          featuredVideo.title || "My latest upload";
+        dom.featuredLength.textContent = featuredVideo.length || "";
+        dom.featuredDate.textContent = featuredVideo.date || "";
 
-      const contactEmailLink = document.getElementById("contact-email-link");
-      contactEmailLink.href = "mailto:" + config.email;
-      contactEmailLink.textContent = config.email;
+        dom.navSubscribe.href = subscribeUrl;
 
-      const contactChannelLink = document.getElementById("contact-channel-link");
-      contactChannelLink.href = config.youtubeChannelUrl;
+        dom.btnOpenChannel.addEventListener("click", () => {
+          window.open(youtubeChannelUrl, "_blank");
+        });
 
-      const contactInstagramLink = document.getElementById("contact-instagram-link");
-      contactInstagramLink.href = config.instagramUrl;
+        dom.btnWatchLatest.addEventListener("click", () => {
+          window.open(
+            "https://www.youtube.com/@SystemCodeX403/videos",
+            "_blank",
+          );
+        });
 
-      // Footer
-      document.getElementById("footer-year").textContent = new Date().getFullYear();
-      document.getElementById("footer-name").textContent = config.yourName;
+        dom.contactEmail.href = `mailto:${email}`;
+        dom.contactEmail.textContent = email;
+        dom.contactChannel.href = youtubeChannelUrl;
+        dom.contactInstagram.href = instagramUrl;
 
-      // Playlist
-      const playlistGrid = document.getElementById("playlist-grid");
-      playlistGrid.innerHTML = "";
-      config.playlist.forEach((video) => {
-        const card = document.createElement("div");
-        card.className = "video-card";
-card.innerHTML = `
-  <iframe
-    class="thumb-frame"
-    src="https://www.youtube.com/embed/${video.id}"
-    title="${video.title}"
-    allowfullscreen>
-  </iframe>
+        dom.footerYear.textContent = new Date().getFullYear();
+        dom.footerName.textContent = yourName;
 
-  <div class="video-info">
-    <h3>${video.title}</h3>
-    <p>${video.description}</p>
-    <p style="margin-top:0.2rem;font-size:0.75rem;color:#999;">
-      ${video.length}
-    </p>
-  </div>
-`;
-        card.addEventListener("click", () => {
-          featuredIframe.src = "https://www.youtube.com/embed/" + video.id;
-          document.getElementById("featured-title").textContent = video.title;
-          document.getElementById("featured-length").textContent = video.length;
-          document.getElementById("featured-date").textContent = config.featuredVideo.date;
+        dom.playlistGrid.innerHTML = playlist
+          .map(
+            (video) => `
+        <div class="video-card" data-id="${video.id}" data-title="${video.title}">
+          <iframe
+            class="thumb-frame"
+            src="https://www.youtube.com/embed/${video.id}"
+            title="${video.title}"
+            allowfullscreen>
+          </iframe>
+          <div class="video-info">
+            <h3>${video.title}</h3>
+          </div>
+        </div>`,
+          )
+          .join("");
+
+        dom.playlistGrid.addEventListener("click", (e) => {
+          const card = e.target.closest(".video-card");
+          if (!card) return;
+          dom.featuredIframe.src = `https://www.youtube.com/embed/${card.dataset.id}`;
+          dom.featuredTitle.textContent = card.dataset.title;
+          dom.featuredLength.textContent = "";
+          dom.featuredDate.textContent = featuredVideo.date || "";
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
-        playlistGrid.appendChild(card);
-      });
 
-      // Contact form (demo only)
-      const form = document.getElementById("contact-form");
-      const status = document.getElementById("form-status");
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        status.textContent =
-          "This demo form doesn’t send yet—but you can connect it to email or a backend later.";
+        dom.form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          dom.formStatus.textContent =
+            "This demo form doesn’t send yet—but you can connect it to email or a backend later.";
+        });
       });
-    }
-
-    document.addEventListener("DOMContentLoaded", initSite);
-  </script>
-</body>
+    </script>
+  </body>
 </html>
